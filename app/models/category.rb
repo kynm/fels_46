@@ -3,4 +3,7 @@ class Category < ActiveRecord::Base
   validates :description, presence: true
 
   has_many :words, dependent: :destroy
+  has_many :lessons
+
+  accepts_nested_attributes_for :lessons
 end

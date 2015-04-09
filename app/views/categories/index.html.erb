@@ -1,0 +1,22 @@
+<% provide(:title, "Categories") %>
+<h1>List Categories</h1>
+<%= will_paginate %>
+<table class="table table-striped table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @categories.each do |category| %>
+      <tr>
+        <td><%= category.name %></td>
+        <td><%= category.description %></td>
+        <td><%= link_to "Start", lessons_path(category_id: category.id), class: "btn btn btn-primary", method: :post %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate %>

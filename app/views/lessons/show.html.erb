@@ -1,0 +1,15 @@
+<% provide(:title, "Lesson") %>
+<div class="word-list">
+  <% @words.each do |word| %>
+    <table class="table" id="<%= word.id %>">
+      <tr>
+        <td><h1><%= word.content %></h1></td>
+        <td>
+          <% word.answers.each do |answer| %>
+            <%= button_to answer.content, "", method: :get, class: "btn btn btn-primary form-control answer" %>
+          <% end %>
+        </td>
+      </tr>
+    </table>
+  <% end %>
+</div>
