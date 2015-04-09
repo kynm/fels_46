@@ -1,0 +1,18 @@
+<% provide(:title, "Categories") %>
+<%= link_to "Create New Category", new_admins_category_path, class: "btn btn-primary pull-right" %>
+<h1>All categories</h1>
+<%= will_paginate %>
+<ul class="users">
+  <ul class="categories list-group">
+  <% @categories.each do |category| %>
+    <li id="category-<%= category.id %>">
+      <span class="list-group-item">
+        <%= link_to category.name, admins_category_path(category.id)%>
+        <%= link_to "Delete", admins_category_path(category.id), method: :delete, class: "btn btn-danger pull-right" %>
+        <%= link_to "Update", edit_admins_category_path(category.id), class: "btn btn-primary pull-right" %>
+      </span>
+    </li>
+  <% end %>
+  </ul>
+</ul>
+<%= will_paginate %>

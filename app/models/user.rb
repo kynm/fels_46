@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  ADMIN = 1
+
   attr_accessor :remember_token
 
   before_save {email.downcase!}
@@ -9,6 +11,8 @@ class User < ActiveRecord::Base
                     format:     {with: VALID_EMAIL_REGEX},
                     uniqueness: {case_sensitive: false}
   validates :password, length: {minimum: 6}, allow_blank: true
+
+  has_many :lessons, dependent: :destroy
 
   has_secure_password
 
