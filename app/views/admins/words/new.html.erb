@@ -1,0 +1,19 @@
+<% provide(:title,"Create new word") %>
+
+<div class="row" >
+  <div class="col-md-6 col-md-offset-3">
+    <h1>Create new word</h1>
+    <p>
+      <b>Category Name:</b> <%= link_to @category.name, admins_category_path(@category) %>
+    </p>
+    <%= form_for [:admins, @category, @word] do |f|%>
+      <%= render 'shared/error_messages', object: f.object %>
+      <div class="words">
+        <%= fields_for @word do |builder| %>
+          <%= render 'word_fields', f: builder, category: @category%>
+        <% end %>
+      </div>
+      <%= f.submit "Submit", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

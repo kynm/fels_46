@@ -15,3 +15,19 @@
 //= require bootstrap
 //= require turbolinks
 //= require_tree .
+
+function remove_fields(link) {
+  $(link).prev().val("true");
+  $(link).parent().hide();
+}
+
+function add_fields(link, association, name) {
+  var new_id = new Date().getTime();
+  var re = new RegExp("new_" + association, 'g');
+  $(link).parent().prev().append(name.replace(re, new_id));
+}
+
+function check(checkbox){
+  $(checkbox).closest(".answers").find("input[type='checkbox']").not(this).prop("checked", false);
+  $(checkbox).prop("checked", true)
+}
