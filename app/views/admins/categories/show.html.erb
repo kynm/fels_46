@@ -1,0 +1,12 @@
+<% provide(:title, @category.name) %>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <h3><%= @category.name %></h3>
+      <p><%= @category.description %></p>
+      <%= link_to "New Word", "#", class: "btn btn-primary" %>
+      <%= link_to "Update", admins_category_path(@category.id), class: "btn btn btn-primary" %>
+      <%= link_to "Delete", admins_category_path(@category.id), method: :delete, class: "btn btn btn-danger" %>
+    </section>
+  </aside>
+</div>
