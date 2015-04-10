@@ -1,4 +1,4 @@
 class Result < ActiveRecord::Base
-  has_one :word
-  has_one :lesson
+  belongs_to :lesson
+  belongs_to :word
 end
