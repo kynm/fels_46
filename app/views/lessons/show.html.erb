@@ -1,15 +1,21 @@
-<% provide(:title, "Lesson") %>
-<div class="word-list">
-  <% @words.each do |word| %>
-    <table class="table" id="<%= word.id %>">
+<% provide(:title, "Result") %>
+<h2><%= @lesson.category.name %> Result <%= @lesson.number_correct %>/<%= @results.count %></h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Word</th>
+      <th>Your answer</th>
+      <th>Check</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @results.each do |result| %>
       <tr>
-        <td><h1><%= word.content %></h1></td>
-        <td>
-          <% word.answers.each do |answer| %>
-            <%= button_to answer.content, "", method: :get, class: "btn btn btn-primary form-control answer" %>
-          <% end %>
-        </td>
+        <td><%= result.word.content %></td>
+        <td><%= result.answer.content %></td>
+        <td><%= image_tag("#{result.answer.correct}.png") %></td>
       </tr>
-    </table>
-  <% end %>
-</div>
+    <% end %>
+  </tbody>
+</table>
+<td><%= link_to "Restart", new_category_lesson_path(category_id: @lesson.category.id), class: "btn btn btn-primary" %></td>

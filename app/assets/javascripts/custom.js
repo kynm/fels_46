@@ -1,15 +1,25 @@
 $(function() {
-  var list_table = $(".word-list table");
+  var list_table = $(".word-current");
   list_table.hide();
   
   var current = list_table.first();
   current.show();
-  
-  $(".answer").click(function (e) {
-    current.hide();
-    current = current.next();
-    current.show();
-    e.preventDefault();
+  $(".submit").hide();
+  $(".next").hide();
+  $(".answer").on("change", function(){
+    $(".next").show();
+  });
+  $(".next").click(function (e) {
+    $(this).hide();
+    var index = parseInt($(this).attr("index"));
+    var count = parseInt($(".word-content").data("count"));
+    if (index + 1 < count) {
+      current.hide();
+      current = current.next();
+      current.show();
+    } else {
+      $(".submit").show();
+    }
   });
 
   $('.remove-answer').click(function () {

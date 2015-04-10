@@ -1,0 +1,25 @@
+<%= javascript_include_tag 'custom', 'data-turbolinks-track' => true %>
+<% provide(:title, "Lesson") %>
+<%= form_for [@category, @lesson] do |f| %>
+  <%= f.fields_for :results do |result_form_builder| %>
+    <% word = result_form_builder.object.word %>
+    <div class="container word-current">
+      <h2><%= @category.name %> <%= result_form_builder.index + 1 %>/<%= @lesson_words.count %></h2>
+      <div class="word-content" data-count="<%= @lesson_words.count %>">
+        <%= word.content %>
+      </div>
+      <div class="word-answer">
+        <div class="btn-group" data-toggle="buttons">
+          <% word.answers.each do |answer| %>
+            <label class="btn btn-primary form-control">
+              <%= result_form_builder.radio_button :answer_id, answer.id, class: "answer" %><%= answer.content %>
+            </label>
+            <%= result_form_builder.hidden_field :word_id %>
+          <% end %>
+        </div>
+      </div>
+      <%= button_tag "Next", class: "btn-primary next col-xs-4", type: "button", index: result_form_builder.index %>
+    </div>
+  <% end %>
+  <%= f.submit "Submit", class: "submit btn btn btn-primary form-control" %>
+<% end %>

@@ -1,26 +1,32 @@
 class LessonsController < ApplicationController
+  before_action :logined_in_user
+
+  def new
+    @category = Category.find params[:category_id]
+    @lesson = Lesson.new
+    @lesson_words = @category.words.limit(5).order('RAND()')
+    @lesson_words.each {|word| @lesson.results.build word: word}
+  end
+
   def create
-    category = Category.find params[:category_id]
-    @lesson = current_user.lessons.build category_id: category.id
+    @category = Category.find params[:category_id]
+    @lesson = current_user.lessons.build lesson_params
+    @lesson.category = @category
     if @lesson.save
-      words = category.words
-      words.sample(20).each do |word|
-        result = @lesson.results.build word_id: word.id
-        result.save
-      end
-      redirect_to lesson_path @lesson.id
+      redirect_to category_lesson_path @lesson.category, @lesson
     else
-      flash[:danger] = "Error"
-      redirect_to root_url
+      redirect_to new_category_lesson_path @lesson.category
     end
   end
 
   def show
     @lesson = Lesson.find params[:id]
     @results = @lesson.results
-    @words = Array.new
-    @results.each do |result|
-      @words.push result.word
-    end
+  end
+
+  private
+
+  def lesson_params
+    params.require(:lesson).permit results_attributes: [:answer_id, :word_id]
   end
 end

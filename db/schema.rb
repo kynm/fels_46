@@ -29,11 +29,11 @@ ActiveRecord::Schema.define(version: 20150408075000) do
   end
 
   create_table "lessons", force: :cascade do |t|
-    t.string   "name",        limit: 255
-    t.integer  "user_id",     limit: 4
-    t.integer  "category_id", limit: 4
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.integer  "user_id",        limit: 4
+    t.integer  "category_id",    limit: 4
+    t.integer  "number_correct", limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   create_table "relationships", force: :cascade do |t|
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20150408075000) do
   create_table "results", force: :cascade do |t|
     t.integer  "lesson_id",  limit: 4
     t.integer  "word_id",    limit: 4
+    t.integer  "answer_id",  limit: 4
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
   end

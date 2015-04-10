@@ -178,3 +178,15 @@ input {
 .users.follow {
   padding: 0;
 }
+
+.submit, .next {
+  width: 300px;
+  margin-top: 20px;
+}
+
+[data-toggle=buttons]>.btn>input[type=radio],
+[data-toggle=buttons]>.btn>input[type=checkbox] {
+  position: absolute;
+  left: -9999px;
+}
+
