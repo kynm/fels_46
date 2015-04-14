@@ -4,6 +4,5 @@ class Category < ActiveRecord::Base
 
   has_many :words, dependent: :destroy
   has_many :lessons
-
-  accepts_nested_attributes_for :lessons
+  accepts_nested_attributes_for :words, :lessons, allow_destroy: true
 end

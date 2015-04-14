@@ -1,0 +1,14 @@
+<%= javascript_include_tag 'custom', 'data-turbolinks-track' => true %>
+<div class="word">
+  <%= f.label :content, "Word" %>
+  <%= f.hidden_field :category_id, value: category.id %>
+  <%= f.text_field :content, class: "form-control word_content" %>
+
+  <div class="answers">
+    <%= f.fields_for :answers do |builder| %>
+      <%= render 'answer_fields', f: builder %>
+    <% end %>
+  </div>
+
+  <p><%= create_add_answer_button "Add Answer", f, :answers %></p>
+</div>

@@ -11,4 +11,15 @@ $(function() {
     current.show();
     e.preventDefault();
   });
+
+  $('.remove-answer').click(function () {
+    remove_fields(this);
+  });
+
+  $(".answers").each(function(){
+    var boxes = $(this).find("input[type='checkbox']:checked");
+    if(boxes.length == 0){
+      $(this).find("input[type='checkbox']:first").prop("checked", true)
+    }
+  });
 });

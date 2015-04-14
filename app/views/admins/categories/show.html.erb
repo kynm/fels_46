@@ -4,9 +4,16 @@
     <section class="user_info">
       <h3><%= @category.name %></h3>
       <p><%= @category.description %></p>
-      <%= link_to "New Word", "#", class: "btn btn-primary" %>
-      <%= link_to "Update", admins_category_path(@category.id), class: "btn btn btn-primary" %>
+      <%= link_to "New Word", new_admins_category_word_path(@category.id), class: "btn btn-primary" %>
+      <%= link_to "Update", admins_category_path(@category.id), class: "btn btn-primary" %>
       <%= link_to "Delete", admins_category_path(@category.id), method: :delete, class: "btn btn btn-danger" %>
     </section>
   </aside>
 </div>
+<%= will_paginate @words %>
+<div class="row">
+  <% if @category.words.any? %>
+    <%= render 'admins/words/word_table', category: @category, words: @words %>
+  <% end %>
+</div>
+<%= will_paginate @words %>
