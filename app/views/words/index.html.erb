@@ -1,0 +1,24 @@
+<div class="container">
+    <label> Category:</label>
+  <%= form_tag words_path, method: :get do |f| %>
+  <%= select_tag 'category_id', options_for_select(@categories.collect{|u| [u.name, u.id]}.unshift(['all', 0]), selected: params[:category_id]) %>
+  <div class="words_radio">
+
+  <% ['filter_all', 'learned', 'not_learned'].each do |f| %>
+    <div class="radio">
+      <label>
+        <%= radio_button_tag :filter, f, (params[:filter] == f), class: ""%><%= f %>
+      </label>
+    </div>  
+  <% end %>
+  </div>
+  <div class='button'>
+    <%= submit_tag 'Filter',class: "btn btn-primary btn-default" %>
+  </div>
+  <% end %>
+</div>
+<% if @words %>
+  <div id="list">
+    <%= render 'word' %>
+  </div>
+<% end %>
