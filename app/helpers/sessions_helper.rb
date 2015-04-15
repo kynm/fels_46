@@ -38,6 +38,10 @@ module SessionsHelper
   end
 
   def isadmin?
-    current_user.role == User::ADMIN unless !logged_in?
+    current_user.role == User::ADMIN if logged_in?
+  end
+
+  def current_user? other_user
+    current_user.id == other_user.id
   end
 end
