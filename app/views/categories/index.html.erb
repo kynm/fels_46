@@ -14,7 +14,7 @@
       <tr>
         <td><%= category.name %></td>
         <td><%= category.description %></td>
-        <td><%= link_to "Start", lessons_path(category_id: category.id), class: "btn btn btn-primary", method: :post %></td>
+        <td><%= link_to "Start", new_category_lesson_path(category), class: "btn btn btn-primary" %></td>
       </tr>
     <% end %>
   </tbody>

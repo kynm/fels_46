@@ -44,4 +44,8 @@ module SessionsHelper
   def current_user? other_user
     current_user.id == other_user.id
   end
+
+  def logined_in_user
+    redirect_to root_path unless logged_in?
+  end
 end
