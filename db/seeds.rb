@@ -5,6 +5,17 @@ User.create!(name:  "Admin",
              password_confirmation: "123456",
              role:     1)
 
+99.times do |n|
+  name  = Faker::Name.name
+  email = "example-#{n+1}@railstutorial.org"
+  password = "password"
+  User.create!(name: name,
+              email: email,
+              password:              password,
+              password_confirmation: password,
+              role: 0)
+end
+
 # Categories
 10.times do
   name = Faker::Name.title
@@ -34,3 +45,11 @@ words.each do |word|
     word.answers.create!(content: content, correct: boolean)
   end
 end
+
+# Following relationships
+users = User.all
+user  = users.first
+following = users[2..50]
+followers = users[3..40]
+following.each { |followed| user.follow(followed) }
+followers.each { |follower| follower.follow(user) }

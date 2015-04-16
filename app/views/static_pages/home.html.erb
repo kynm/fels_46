@@ -1,6 +1,28 @@
 <% provide(:title, "Home") %>
-<div class="jumbotron center">
-  <h1>Framgia E-Learning System</h1>
-  <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
-</div>
-<%= link_to image_tag("http://i.imgur.com/UV6trd2.jpg") %>
+<% if logged_in? %>
+  <h1>Activites</h1>
+  <div class="container">
+    <div class="col-md-4">
+      <section>
+        <h2><%= gravatar_for current_user %></h2>
+      </section>
+      <section class="stats">
+        <%= current_user.name %> <br/>
+        Learned <%= @count %> words
+      </section>
+    </div>
+    <div class="col-md-8">
+      <ul class="list-group">
+        <% @activities.each do |activity| %>
+          <%= render_activity activity, display: :i18n %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+<% else %>
+  <div class="jumbotron center">
+    <h1>Framgia E-Learning System</h1>
+    <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+  </div>
+  <%= link_to image_tag("http://i.imgur.com/UV6trd2.jpg") %>
+<% end %>

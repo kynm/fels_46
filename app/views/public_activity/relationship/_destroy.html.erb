@@ -1,0 +1,10 @@
+<% if activity.owner %>
+  <% if current_user?(activity.owner) || current_user.following?(activity.owner) %>
+    <li class="list-group-item">
+      <strong><%= gravatar_for activity.owner, {size:20} %></strong>
+      <%= link_to activity.owner.name, user_path(activity.owner) %>
+      unfollowed <%= link_to activity.recipient.name, user_path(activity.recipient) %>
+      - (<%= activity.created_at.strftime('%H:%M:%S %-d %B %Y') %>)
+    </li>
+  <% end %>
+<% end %>

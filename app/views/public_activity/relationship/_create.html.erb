@@ -1,0 +1,11 @@
+<% track = activity.trackable %>
+<% if track %>
+  <% if current_user?(track.followed) || current_user.following?(track.followed) %>
+    <li class="list-group-item">
+      <strong><%= gravatar_for track.follower, {size:20} %></strong>
+      <%= link_to track.follower.name, user_path(track.follower) %> followed 
+              <%= link_to track.followed.name, user_path(track.followed) %>
+              - (<%= activity.created_at.strftime('%H:%M:%S %-d %B %Y') %>)
+    </li>
+  <% end %>
+<% end %>

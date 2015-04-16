@@ -1,4 +1,7 @@
 class Lesson < ActiveRecord::Base
+  include PublicActivity::Model
+  tracked owner: Proc.new{|controller, model| controller.current_user}
+
   belongs_to :category
   belongs_to :user
   has_many :results
