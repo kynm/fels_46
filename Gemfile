@@ -17,6 +17,7 @@ gem 'turbolinks',              '2.3.0'
 gem 'jbuilder',                '2.2.3'
 gem 'mysql2',                  '0.3.18'
 gem 'pry',                     '~> 0.10.1'
+gem 'prawn-rails'
 gem 'sdoc',                    '0.4.0', group: :doc
 gem 'public_activity', github: 'pokonski/public_activity'
 
