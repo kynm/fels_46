@@ -12,4 +12,9 @@ class Word < ActiveRecord::Base
 
   scope :word_user, -> user {joins(results: :lesson).where(lessons: {user_id: user}).distinct}
   scope :random_word, -> {limit(5).order('RAND()')}
+  scope :learned, ->user, category_id {where(id: filter_all(user, category_id)).joins(results: :lesson).where(
+                            lessons: {user_id: user}).distinct}
+
+  scope :not_learned, ->user, category_id {where(id: filter_all(user, category_id)).where.not id: learned(user, category_id).map(&:id)}
+  scope :filter_all, ->user, category_id {where category_id: category_id if(category_id && category_id.to_i != 0)}
 end

@@ -27,4 +27,11 @@ $(function() {
       $(this).find("input[type='checkbox']:first").prop("checked", true)
     }
   });
+
+  $(".words_radio").each(function(){
+    var boxes = $(this).find("input[type='radio']:checked");
+    if(boxes.length == 0){
+      $(this).find("input[type='radio']:first").prop("checked", true)
+    }
+  });
 });

@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :users, expect: [:index, :destroy] do
     resources :relationships, only: [:create, :destroy]
   end
-
+  resources :words, only: [:index, :create]
   resources :categories, only: [:index] do
     resources :lessons, only: [:create, :show, :new]
   end
