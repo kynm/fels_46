@@ -25,10 +25,12 @@ end
 
 #Words
 categories = Category.all
-50.times do
-  content = Faker::Lorem.word
-  speak_url = Faker::Internet.url
-  categories.each { |category| category.words.create!(content: content, speak_url: speak_url) }
+categories.each do |category|
+  50.times do |i|
+    content = Faker::Lorem.word
+    speak_url = Faker::Internet.url
+    category.words.create!(content: content + Faker::Number.number(3), speak_url: speak_url)
+  end
 end
 
 #Answers
