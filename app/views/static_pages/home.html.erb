@@ -1,12 +1,11 @@
 <% provide(:title, "Home") %>
 <% if logged_in? %>
-  <p>
-    <%= link_to "Lessons", "#", class: "btn btn-primary btn-lg" %>
-    <%= link_to "Words", words_path, class: "btn btn-primary btn-lg active" %>
-  </p>
-  
   <h1>Activites</h1>
   <div class="container">
+    <p>
+      <%= link_to "Lessons", "#", class: "btn btn-primary btn-lg" %>
+      <%= link_to "Words", words_path, class: "btn btn-primary btn-lg active" %>
+    </p>
     <div class="col-md-4">
       <section>
         <h2><%= gravatar_for current_user %></h2>
@@ -17,11 +16,13 @@
       </section>
     </div>
     <div class="col-md-8">
+      <%= will_paginate @activities %>
       <ul class="list-group">
         <% @activities.each do |activity| %>
           <%= render_activity activity, display: :i18n %>
         <% end %>
       </ul>
+      <%= will_paginate @activities %>
     </div>
   </div>
 <% else %>
