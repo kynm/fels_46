@@ -1,0 +1,10 @@
+<% track = activity.trackable %>
+<% if track && (current_user?(track.user) || current_user.following?(track.user)) %>
+  <li class="list-group-item">
+    <strong><%= gravatar_for track.user, {size:20} %></strong>
+    <%= link_to track.user.name, user_path(track.user) %>
+    learned <%= track.results.count %> word in Lesson <%= track.id %> in Category "<%= link_to track.category.name,
+                                    category_lesson_path(track.category, track.id) %>"
+                                    - (<%= activity.created_at.strftime('%H:%M:%S %-d %B %Y') %>)
+  </li>
+<% end %>

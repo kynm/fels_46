@@ -6,19 +6,18 @@
     <div class="container word-current">
       <h2><%= @category.name %> <%= result_form_builder.index + 1 %>/<%= @lesson_words.count %></h2>
       <div class="word-content" data-count="<%= @lesson_words.count %>">
-        <%= word.content %>
+        <h1><%= word.content %></h1>
       </div>
-      <div class="word-answer">
+      <div class="word-answer center">
         <div class="btn-group" data-toggle="buttons">
           <% word.answers.each do |answer| %>
-            <label class="btn btn-primary form-control">
+            <label class="btn btn-primary form-control", index="<%= result_form_builder.index %>">
               <%= result_form_builder.radio_button :answer_id, answer.id, class: "answer" %><%= answer.content %>
             </label>
             <%= result_form_builder.hidden_field :word_id %>
           <% end %>
         </div>
       </div>
-      <%= button_tag "Next", class: "btn-primary next col-xs-4", type: "button", index: result_form_builder.index %>
     </div>
   <% end %>
   <%= f.submit "Submit", class: "submit btn btn btn-primary form-control" %>

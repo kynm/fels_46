@@ -5,13 +5,8 @@ $(function() {
   var current = list_table.first();
   current.show();
   $(".submit").hide();
-  $(".next").hide();
   $(".answer").on("change", function(){
-    $(".next").show();
-  });
-  $(".next").click(function (e) {
-    $(this).hide();
-    var index = parseInt($(this).attr("index"));
+    var index = parseInt($(this).parent().attr("index"));
     var count = parseInt($(".word-content").data("count"));
     if (index + 1 < count) {
       current.hide();

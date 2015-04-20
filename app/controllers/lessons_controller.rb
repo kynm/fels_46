@@ -4,7 +4,7 @@ class LessonsController < ApplicationController
   def new
     @category = Category.find params[:category_id]
     @lesson = Lesson.new
-    @lesson_words = @category.words.limit(5).order('RAND()')
+    @lesson_words = @category.words.random_word
     @lesson_words.each {|word| @lesson.results.build word: word}
   end
 

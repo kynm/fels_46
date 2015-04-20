@@ -9,4 +9,7 @@ class Word < ActiveRecord::Base
                                 allow_destroy: true
 
   validates :content, uniqueness: {scope: [:category_id]}
+
+  scope :word_user, -> user {joins(results: :lesson).where(lessons: {user_id: user}).distinct}
+  scope :random_word, -> {limit(5).order('RAND()')}
 end
