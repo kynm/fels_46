@@ -22,6 +22,8 @@ gem 'sdoc',                    '0.4.0', group: :doc
 gem 'public_activity', github: 'pokonski/public_activity'
 
 group :development, :test do
+  gem 'rspec-rails', '~> 3.0'
+  gem 'factory_girl_rails'
   gem 'sqlite3',     '1.3.9'
   gem 'byebug',      '3.4.0'
   gem 'web-console', '2.0.0.beta3'
@@ -29,9 +31,9 @@ group :development, :test do
 end
 
 group :test do
-  gem 'minitest-reporters', '1.0.5'
-  gem 'mini_backtrace',     '0.1.3'
-  gem 'guard-minitest',     '2.3.1'
+  gem 'database_cleaner'
+  gem 'capybara'
+  gem 'shoulda-matchers', require: false
 end
 
 group :production do
